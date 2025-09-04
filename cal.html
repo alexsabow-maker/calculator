@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор ЖКХ</title>
+    <!-- Подключаем Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #2d2d2d;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #f0f0f0;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #cccccc;
+        }
+        .input-group .icon-input {
+            display: flex;
+            align-items: center;
+            background-color: #3d3d3d;
+            border: 1px solid #444444;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .input-group .icon-input i {
+            margin: 0 10px;
+            color: #cccccc;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            color: #ffffff;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .input-group input:focus {
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Калькулятор ЖКХ</h1>
+    
+    <div class="input-group">
+        <label for="water">Вода (тариф: 38.23 руб.)</label>
+        <div class="icon-input">
+            <i class="fas fa-tint"></i> <!-- Иконка воды -->
+            <input type="number" id="water" placeholder="Введите показания">
+        </div>
+    </div>
+    
+    <div class="input-group">
+        <label for="gas">Газ (тариф: 8.05 руб.)</label>
+        <div class="icon-input">
+            <i class="fas fa-fire"></i> <!-- Иконка газа -->
+            <input type="number" id="gas" placeholder="Введите показания">
+        </div>
+    </div>
+    
+    <div class="input-group">
+        <label for="electricity">Свет (тариф: 5.96 руб.)</label>
+        <div class="icon-input">
+            <i class="fas fa-lightbulb"></i> <!-- Иконка света -->
+            <input type="number" id="electricity" placeholder="Введите показания">
+        </div>
+    </div>
+    
+    <button onclick="calculate()">Рассчитать</button>
+    
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculate() {
+        const waterTariff = 38.23;
+        const gasTariff = 8.05;
+        const electricityTariff = 5.96;
+
+        const water = parseFloat(document.getElementById('water').value) || 0;
+        const gas = parseFloat(document.getElementById('gas').value) || 0;
+        const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+
+        const waterCost = water * waterTariff;
+        const gasCost = gas * gasTariff;
+        const electricityCost = electricity * electricityTariff;
+
+        const total = waterCost + gasCost + electricityCost;
+        
+        document.getElementById('result').innerHTML = `
+            <p>Вода: ${waterCost.toFixed(2)} ₽</p>
+            <p>Газ: ${gasCost.toFixed(2)} ₽</p>
+            <p>Свет: ${electricityCost.toFixed(2)} ₽</p>
+            <p>Итого: ${total.toFixed(2)} ₽</p>
+        `;
+        }
+</script>
+
+</body>
+</html>
